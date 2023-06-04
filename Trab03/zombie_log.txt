@@ -1,2 +1,14 @@
 PID | PPID | Nome do Programa
 ==========================================
+	988|  	987|	zombies
+	989|  	987|	zombies
+	990|  	987|	zombies
+	991|  	987|	zombies
+	992|  	987|	zombies
+	2320| 	2319|	sudo
+==========================================
+	988|  	987|	zombies
+	989|  	987|	zombies
+	990|  	987|	zombies
+	991|  	987|	zombies
+	992|  	987|	zombies
