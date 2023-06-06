@@ -29,7 +29,7 @@ void get_parameter(char *parameter, char *token) // Get parameter from line
 {
     token = strtok(NULL, ":");
     // Remove leading spaces
-    while (*token == ' ')
+    while (*token == ' ' || *token == '\t')
     {
         token++;
     }
@@ -58,7 +58,6 @@ void write_zombies_to_log(FILE *log_file) // Write zombie processes to log file
         {
             if (atoi(entry->d_name) != 0) // If entry name is a valid PID
             {
-                // printf("PID: %s\n", entry->d_name); // Print PID to console
 
                 char proc_path[256];                                                      // Path to process status file
                 snprintf(proc_path, sizeof(proc_path), "/proc/%s/status", entry->d_name); // Create path to process status file
@@ -125,37 +124,9 @@ void write_zombies_to_log(FILE *log_file) // Write zombie processes to log file
                         }
                     }
 
-                    // while (fgets(line, sizeof(line), status_file) != NULL) // For each line in process status file
-                    // {
-                    //     if (sscanf(line, "Pid:\t%d", &pid) == 1) // If line starts with "Pid:"
-                    //     {
-                    //         break; // Stop reading lines
-                    //     }
-                    // }
-
-                    // rewind(status_file); // Rewind process status file
-
-                    // while (fgets(line, sizeof(line), status_file) != NULL) // For each line in process status file
-                    // {
-                    //     if (sscanf(line, "PPid:\t%d", &ppid) == 1) // If line starts with "PPid:"
-                    //     {
-                    //         break; // Stop reading lines
-                    //     }
-                    // }
-
-                    // rewind(status_file); // Rewind process status file
-
-                    // while (fgets(line, sizeof(line), status_file) != NULL) // For each line in process status file
-                    // {
-                    //     if (sscanf(line, "Name:\t%s", name) == 1) // If line starts with "Name:"
-                    //     {
-                    //         break; // Stop reading lines
-                    //     }
-                    // }
-
                     if (isZombie != 0) // If process is a zombie
                     {
-                        fprintf(log_file, "%4s | %6s | %s\n", pid, ppid, name); // Write process information to log file
+                        fprintf(log_file, "%7s | %9s | %s\n", pid, ppid, name); // Write process information to log file
                     }
 
                     fclose(status_file); // Close process status file
@@ -196,11 +167,11 @@ int main(int argc, char **argv) // Main function
 
     signal(SIGTERM, handle_signal); // Register signal handler
 
-    umask(0); // Set file mode creation mask to 0
+    //umask(0); // Set file mode creation mask to 0
 
-    close(STDIN_FILENO);  // Close standard input
-    close(STDOUT_FILENO); // Close standard output
-    close(STDERR_FILENO); // Close standard error
+    //close(STDIN_FILENO);  // Close standard input
+    //close(STDOUT_FILENO); // Close standard output
+    //close(STDERR_FILENO); // Close standard error
 
     FILE *log_file = fopen(LOG_FILE, "w"); // Write to log file
     if (log_file == NULL)                  // If log file was not opened successfully
@@ -209,7 +180,7 @@ int main(int argc, char **argv) // Main function
         exit(1);                           // Exit with error
     }
 
-    fprintf(log_file, "PID | PPID | Nome do Programa\n"); // Write header to log file
+    fprintf(log_file, "    PID |      PPID | Nome do Programa\n"); // Write header to log file
 
     // Main loop
     while (1)
