@@ -59,7 +59,7 @@ void write_zombies_to_log(FILE *log_file) // Write zombie processes to log file
             if (atoi(entry->d_name) != 0) // If entry name is a valid PID
             {
 
-                char proc_path[256];                                                      // Path to process status file
+                char proc_path[512];                                                      // Path to process status file
                 snprintf(proc_path, sizeof(proc_path), "/proc/%s/status", entry->d_name); // Create path to process status file
                 FILE *status_file = fopen(proc_path, "r");                                // Open process status file
 
@@ -126,7 +126,7 @@ void write_zombies_to_log(FILE *log_file) // Write zombie processes to log file
 
                     if (isZombie != 0) // If process is a zombie
                     {
-                        fprintf(log_file, "%7s | %9s | %s\n", pid, ppid, name); // Write process information to log file
+                        fprintf(log_file, "%9s     | %8s     |     %s\n", pid, ppid, name); // Write process information to log file
                     }
 
                     fclose(status_file); // Close process status file
@@ -180,12 +180,12 @@ int main(int argc, char **argv) // Main function
         exit(1);                           // Exit with error
     }
 
-    fprintf(log_file, "    PID |      PPID | Nome do Programa\n"); // Write header to log file
+    fprintf(log_file, "      PID     |     PPID     |     Nome do Programa\n"); // Write header to log file
 
     // Main loop
     while (1)
     {
-        fprintf(log_file, "==========================================\n"); // Write header to log file
+        fprintf(log_file, "========================================================\n"); // Write header to log file
         write_zombies_to_log(log_file);                                    // Write zombie processes to log file
         fflush(log_file);                                                  // Flush buffer to ensure data is written immediately
         sleep(interval);                                                   // Sleep for interval seconds

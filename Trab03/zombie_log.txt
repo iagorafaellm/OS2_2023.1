@@ -1,14 +1,26 @@
-    PID |      PPID | Nome do Programa
-==========================================
-    180 |       179 | zombies
-    181 |       179 | zombies
-    182 |       179 | zombies
-    183 |       179 | zombies
-    184 |       179 | zombies
-==========================================
-    180 |       179 | zombies
-    181 |       179 | zombies
-    182 |       179 | zombies
-    183 |       179 | zombies
-    184 |       179 | zombies
+      PID     |     PPID     |     Nome do Programa
+========================================================
+      180     |      179     |     zombies
+      181     |      179     |     zombies
+      182     |      179     |     zombies
+      183     |      179     |     zombies
+      184     |      179     |     zombies
+========================================================
+      180     |      179     |     zombies
+      181     |      179     |     zombies
+      182     |      179     |     zombies
+      183     |      179     |     zombies
+      184     |      179     |     zombies
+========================================================
+      180     |      179     |     zombies
+      181     |      179     |     zombies
+      182     |      179     |     zombies
+      183     |      179     |     zombies
+      184     |      179     |     zombies
+========================================================
+      180     |      179     |     zombies
+      181     |      179     |     zombies
+      182     |      179     |     zombies
+      183     |      179     |     zombies
+      184     |      179     |     zombies
 Daemon terminated.
