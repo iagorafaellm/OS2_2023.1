@@ -6,10 +6,14 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-# Se o arquivo $1 nao existir
+# Verifica se o arquivo existe
 if [ ! -f $1 ]; then 
     echo "Arquivo $1 não existe"
     exit 1
 fi
 
-echo "Arquivo $1 existe"
+# Conta linhas e palavras usando wc
+linha=$(wc -l < $1)
+palavras=$(wc -w < $1)
+
+echo "O arquivo $1 tem $linha linhas e $palavras palavras."
